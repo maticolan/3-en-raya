@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int main()
+{
+    char a1 = '1', a2 = '2', a3 = '3', b1 = '4', b2 = '5', b3 = '6', c1 = '7', c2 = '8', c3 = '9';
+    cout << '\n' << "--------------" << '\n';
+    cout << " | " << a1 << " | " << a2 << " | " << a3 << " | ";
+    cout << '\n' << "--------------" << '\n';
+    cout << " | " << b1 << " | " << b2 << " | " << b3 << " | ";
+    cout << '\n' << "--------------" << '\n';
+    cout << " | " << c1 << " | " << c2 << " | " << c3 << " | ";
+    cout << '\n' << "--------------" << '\n';
+    char jugador_1;
+    char jugador_2;
+    int modo_de_juego;
+    bool juego = true;
+    cout << "¡Juguemos 3 en raya!" << endl << "-----------------------" << endl << "REGLAS: " << endl;
+    cout << "Si usas tu turno para poner tu caracter en un lugar que ya estaba ocupado por otro, pierdes tu turno, diviértete" << endl << endl << "Seleccione el modo de juego (1 o 2):" << endl;
+    cout << "1. Jugador vs Jugador" << endl << "2. Jugador vs Computadora" << endl;
+    while (true)
+    {
+        cin >> modo_de_juego;
+        if (modo_de_juego == 1 || modo_de_juego == 2)
+            break;
+    }
+    while (true)
+    {
+        cout << "Ficha de jugador 1 (X/O): ";
+        cin >> jugador_1;
+        if (jugador_1 == 'X' || jugador_1 == 'O' || jugador_1 == 'x' || jugador_1 == 'o')
+            break;
+    }
+    a1 = ' ', a2 = ' ', a3 = ' ', b1 = ' ', b2 = ' ', b3 = ' ', c1 = ' ', c2 = ' ', c3 = ' ';
+
+    int num = 1;
+
+    if (modo_de_juego == 1){
+
+      cout << "--- Jugador vs Jugador ---" << endl;
+
+      if (jugador_1 == 'X'|| jugador_1 == 'x')
+      {
+          jugador_2 = 'O';
+      }
+      else if (jugador_1 == 'O'|| jugador_1 == 'o')
+      {
+          jugador_2 = 'X';
+      }
+    }
+}
