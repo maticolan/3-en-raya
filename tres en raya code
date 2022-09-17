@@ -1,51 +1,127 @@
-#include <iostream>
-#include <cstdlib>
-using namespace std;
-int main()
-{
-    char a1 = '1', a2 = '2', a3 = '3', b1 = '4', b2 = '5', b3 = '6', c1 = '7', c2 = '8', c3 = '9';
-    cout << '\n' << "--------------" << '\n';
-    cout << " | " << a1 << " | " << a2 << " | " << a3 << " | ";
-    cout << '\n' << "--------------" << '\n';
-    cout << " | " << b1 << " | " << b2 << " | " << b3 << " | ";
-    cout << '\n' << "--------------" << '\n';
-    cout << " | " << c1 << " | " << c2 << " | " << c3 << " | ";
-    cout << '\n' << "--------------" << '\n';
-    char jugador_1;
-    char jugador_2;
-    int modo_de_juego;
-    bool juego = true;
-    cout << "¡Juguemos 3 en raya!" << endl << "-----------------------" << endl << "REGLAS: " << endl;
-    cout << "Si usas tu turno para poner tu caracter en un lugar que ya estaba ocupado por otro, pierdes tu turno, diviértete" << endl << endl << "Seleccione el modo de juego (1 o 2):" << endl;
-    cout << "1. Jugador vs Jugador" << endl << "2. Jugador vs Computadora" << endl;
-    while (true)
-    {
-        cin >> modo_de_juego;
-        if (modo_de_juego == 1 || modo_de_juego == 2)
-            break;
+#include <iostream>  
+#include <time.h>    
+
+int main (){
+    int numero, option;
+    char name1[40], name2[40], p1, p2, turno;
+    bool error;
+    
+    while (1){  
+        std::cout << "Bienvenidos al juego de Tres en raya\n";
+        //menu de opciones.
+        std::cout << "      1. Jugador VS jugador\n";
+        std::cout << "      2. Salir\n\n";
+        std::cout << "  Seleccione una opcion:";
+        std::cin>>option;
+        
+        char a='1', b='2', c='3', d='4', e='5', f='6', g='7', h='8', i='9';
+        
+        if(option==1){
+            std::cout << "====== Tres en raya ======\n";
+            std::cout << "Ingrese su nombre jugador 1:";
+            std::cin>>name1;
+            
+            do{
+                std::cout << "Jugador 1 ingrese con que simbolo quiere jugar:";
+                std::cin>>p1;
+            }while(p1!='X' && p1!='O');     
+            
+            if (p1=='X') p2 = 'O';  
+            else p2 = 'X';
+            
+            std::cout << "Ingrese su nombre juagador 2:";
+            std::cin>>name2;
+            
+            turno = p1;  
+            
+            std::cout<<std::endl<<name1<<" jugara con: "<<p1<<std::endl;
+            std::cout<<name2<<" jugara con: "<<p2<<std::endl;
+            
+            while (true){
+                std::cout << "====== Tres en raya ======\n";
+
+                std::cout<<"                     "<<a<<" | "<<b<<" | "<<c<<std::endl;    
+                std::cout<<"                    ..........."<<std::endl;
+                std::cout<<"                     "<<d<<" | "<<e<<" | "<<f<<std::endl;
+                std::cout<<"                    ..........."<<std::endl;
+                std::cout<<"                     "<<g<<" | "<<h<<" | "<<i<<std::endl;
+                std::cout<<"\n\n";
+                
+                if((a+b+c==p1*3)||(a+d+g==p1*3)||(a+e+i==p1*3)||(c+e+g==p1*3)||(c+f+i==p1*3)||(d+e+f==p1*3)||(g+h+i==p1*3)||(b+e+h==p1*3)){
+
+                    std::cout << " \t\t El ganador es:  "<<name1<<"\n";
+                    break;  
+                }
+                if((a+b+c==p2*3)||(a+d+g==p2*3)||(a+e+i==p2*3)||(c+e+g==p2*3)||(c+f+i==p2*3)||(d+e+f==p2*3)||(g+h+i==p2*3)||(b+e+h==p2*3)){
+                    std::cout << " \t\t El ganador es:  "<<name2<<"\n";
+                    break;
+                }
+                
+                if (a+b+c+d+e+f+g+h+i >= 747){
+                    std::cout << " EMPATE \n";
+                    break;  
+                }
+                
+                
+                do{
+                    error=false;
+
+                    std::cout<<" Ahora es turno de:  ";
+                    if(turno==p1) std::cout<<name1;
+                    else std::cout<<name2;
+          
+                    std::cout<<" con \""<< turno <<"\" : "; std::cin>>numero;
+
+                    if(numero==1 && a=='1'){  
+                        a=turno;
+                    }
+                    else if(numero==2 && b=='2'){
+                        b=turno;
+                    }
+                    else if(numero==3 && c=='3'){
+                        c=turno;    
+                    }
+                    else if(numero==4 && d=='4'){
+                        d=turno;
+                    }
+                    else if(numero==5 && e=='5'){
+                        e=turno;
+                    }
+                    else if(numero==6 && f=='6'){
+                        f=turno;
+                    }
+                    else if(numero==7 && g=='7'){
+                        g=turno;
+                    }
+                    else if(numero==8 && h=='8'){
+                        h=turno;
+                    }
+                    else if(numero==9 && i=='9'){
+                        i=turno;        
+                    }
+                    else{
+                        error=true; 
+                        std::cout<<"\nerror esa casilla ya esta siendo usada\n\a"<<std::endl;
+                    }
+                }while(error==true); 
+                    
+                if(turno==p1){   
+                    turno=p2;
+                }
+                else{
+                    turno=p1;
+                }
+
+            }           
+
+        }
+        else if (option==2){
+            break;  
+        }
+        else{
+            std::cout << "\n\n  No existe esta opción\n\n";
+        }
     }
-    while (true)
-    {
-        cout << "Ficha de jugador 1 (X/O): ";
-        cin >> jugador_1;
-        if (jugador_1 == 'X' || jugador_1 == 'O' || jugador_1 == 'x' || jugador_1 == 'o')
-            break;
-    }
-    a1 = ' ', a2 = ' ', a3 = ' ', b1 = ' ', b2 = ' ', b3 = ' ', c1 = ' ', c2 = ' ', c3 = ' ';
 
-    int num = 1;
-
-    if (modo_de_juego == 1){
-
-      cout << "--- Jugador vs Jugador ---" << endl;
-
-      if (jugador_1 == 'X'|| jugador_1 == 'x')
-      {
-          jugador_2 = 'O';
-      }
-      else if (jugador_1 == 'O'|| jugador_1 == 'o')
-      {
-          jugador_2 = 'X';
-      }
-    }
+    return 0;
 }
