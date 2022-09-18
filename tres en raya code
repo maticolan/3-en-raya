@@ -1,14 +1,32 @@
 #include <iostream>  
-#include <time.h>    
+#include <time.h> 
+#include <windows.h>    
+
+using namespace std;
 
 int main (){
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    SetConsoleTextAttribute(hConsole, 4); 
+    std::cout<<"/**************************************************/\n";
+    std::cout<<"Trabajo: Tres en raya\n";
+    std::cout<<"Alumnos: Alyson Perez Flores\n";
+    std::cout<<"         Matias Colan Vera\n";
+    std::cout<<"Curso de Ciencia de la Computacion\n";
+    std::cout<<"UCSP - 2022\n";
+    std::cout<<"/**************************************************/\n";
+
     int numero, option;
     char name1[40], name2[40], p1, p2, turno;
     bool error;
     
-    while (1){  
+    while (1){ 
+
+        SetConsoleTextAttribute(hConsole, 3); 
         std::cout << "Bienvenidos al juego de Tres en raya\n";
         //menu de opciones.
+        SetConsoleTextAttribute(hConsole, 11); 
         std::cout << "      1. Jugador VS jugador\n";
         std::cout << "      2. Salir\n\n";
         std::cout << "  Seleccione una opcion:";
@@ -17,11 +35,14 @@ int main (){
         char a='1', b='2', c='3', d='4', e='5', f='6', g='7', h='8', i='9';
         
         if(option==1){
+            SetConsoleTextAttribute(hConsole, 3); 
             std::cout << "====== Tres en raya ======\n";
+            SetConsoleTextAttribute(hConsole, 12); 
             std::cout << "Ingrese su nombre jugador 1:";
             std::cin>>name1;
             
             do{
+                SetConsoleTextAttribute(hConsole, 13); 
                 std::cout << "Jugador 1 ingrese con que simbolo quiere jugar:";
                 std::cin>>p1;
             }while(p1!='X' && p1!='O');     
@@ -29,7 +50,8 @@ int main (){
             if (p1=='X') p2 = 'O';  
             else p2 = 'X';
             
-            std::cout << "Ingrese su nombre juagador 2:";
+            SetConsoleTextAttribute(hConsole, 12); 
+            std::cout << "Ingrese su nombre jugador 2:";
             std::cin>>name2;
             
             turno = p1;  
@@ -38,26 +60,34 @@ int main (){
             std::cout<<name2<<" jugara con: "<<p2<<std::endl;
             
             while (true){
+                SetConsoleTextAttribute(hConsole, 3); 
                 std::cout << "====== Tres en raya ======\n";
 
-                std::cout<<"                     "<<a<<" | "<<b<<" | "<<c<<std::endl;    
-                std::cout<<"                    ..........."<<std::endl;
-                std::cout<<"                     "<<d<<" | "<<e<<" | "<<f<<std::endl;
-                std::cout<<"                    ..........."<<std::endl;
-                std::cout<<"                     "<<g<<" | "<<h<<" | "<<i<<std::endl;
+
+                SetConsoleTextAttribute(hConsole, 12); 
+                std::cout<<"    "<<a<<" | "<<b<<" | "<<c<<std::endl;    
+                std::cout<<"    ........."<<std::endl;
+                std::cout<<"    "<<d<<" | "<<e<<" | "<<f<<std::endl;
+                std::cout<<"    ........."<<std::endl;
+                std::cout<<"    "<<g<<" | "<<h<<" | "<<i<<std::endl;
                 std::cout<<"\n\n";
                 
                 if((a+b+c==p1*3)||(a+d+g==p1*3)||(a+e+i==p1*3)||(c+e+g==p1*3)||(c+f+i==p1*3)||(d+e+f==p1*3)||(g+h+i==p1*3)||(b+e+h==p1*3)){
 
+                    SetConsoleTextAttribute(hConsole, 11); 
                     std::cout << " \t\t El ganador es:  "<<name1<<"\n";
                     break;  
                 }
                 if((a+b+c==p2*3)||(a+d+g==p2*3)||(a+e+i==p2*3)||(c+e+g==p2*3)||(c+f+i==p2*3)||(d+e+f==p2*3)||(g+h+i==p2*3)||(b+e+h==p2*3)){
+                    
+                    SetConsoleTextAttribute(hConsole, 11);
                     std::cout << " \t\t El ganador es:  "<<name2<<"\n";
                     break;
                 }
                 
                 if (a+b+c+d+e+f+g+h+i >= 747){
+
+                    SetConsoleTextAttribute(hConsole, 48);
                     std::cout << " EMPATE \n";
                     break;  
                 }
@@ -66,6 +96,7 @@ int main (){
                 do{
                     error=false;
 
+                    SetConsoleTextAttribute(hConsole, 6);
                     std::cout<<" Ahora es turno de:  ";
                     if(turno==p1) std::cout<<name1;
                     else std::cout<<name2;
@@ -101,6 +132,8 @@ int main (){
                     }
                     else{
                         error=true; 
+
+                        SetConsoleTextAttribute(hConsole, 16);
                         std::cout<<"\nerror esa casilla ya esta siendo usada\n\a"<<std::endl;
                     }
                 }while(error==true); 
@@ -119,7 +152,9 @@ int main (){
             break;  
         }
         else{
-            std::cout << "\n\n  No existe esta opción\n\n";
+
+            SetConsoleTextAttribute(hConsole, 16);
+            std::cout << "\n\n  NO EXISTE ESTA OPCION\n\n";
         }
     }
 
